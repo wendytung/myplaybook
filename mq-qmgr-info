@@ -1,0 +1,3 @@
+startmqm $QMGR
+echo dis qmgr all >/tmp/mycmd
+runmqsc $QMGR </tmp/mycmd >/tmp/myoutput
