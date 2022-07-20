@@ -1,3 +1,11 @@
-startmqm $QMGR
-echo dis qmgr all >/tmp/mycmd
-runmqsc $QMGR </tmp/mycmd >/tmp/myoutput
+---
+- hosts: all
+  tasks:
+    - name: Content Update
+      copy:
+        dest: /tmp/mycmd
+        content: "echo dis qmgr all"
+    - name: start qmgr "{{qmgr}}"
+      command: strmqm "{{qmgr}}"
+    - name: dis qmgr all
+      command: runmqsc "{{qmgr}}" </tmp/mycmd >/tmp/myoutput
