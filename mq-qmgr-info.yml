@@ -5,7 +5,9 @@
       copy:
         dest: /tmp/mycmd
         content: "echo dis qmgr all"
-    - name: start qmgr "{{qmgr}}"
-      command: strmqm "{{qmgr}}"
+    - name: Display qmgr name
+      command: echo Queue Manager " {{qmgr}} " 
+    - name: start qmgr " {{qmgr}} "
+      command: strmqm " {{qmgr}} "
     - name: dis qmgr all
-      command: runmqsc "{{qmgr}}" </tmp/mycmd >/tmp/myoutput
+      command: runmqsc " {{qmgr}} " </tmp/mycmd >/tmp/myoutput
