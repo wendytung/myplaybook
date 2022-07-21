@@ -14,8 +14,11 @@
       register: command_result
       failed_when: "'FAILED' in command_result.stderr"
     #
-    - pause
-      minutes: 1
+    -  name: Sleep for 60 seconds and timeout
+       tags: sleep60
+       wait_for:
+         delay: 60
+         timeout: 0
     #
     - name: Display qmgr all
       command: /opt/mqm/bin/runmqsc {{qmgr}} < /tmp/mycmd > /tmp/myoutput
