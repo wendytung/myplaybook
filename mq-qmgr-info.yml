@@ -11,6 +11,11 @@
     #
     - name: Start qmgr  {{qmgr}} 
       command:  /opt/mqm/bin/strmqm {{qmgr}}
+      register: command_result
+      failed_when: "'FAILED' in command_result.stderr"
+    #
+    - pause
+      minutes: 1
     #
     - name: Display qmgr all
       command: /opt/mqm/bin/runmqsc {{qmgr}} < /tmp/mycmd > /tmp/myoutput
