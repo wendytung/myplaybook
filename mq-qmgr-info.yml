@@ -14,8 +14,8 @@
       register: command_result
       failed_when: "'FAILED' in command_result.stderr"
     #
-    -  name: Sleep for 60 seconds and timeout
-       tags: sleep60
+    -  name: Sleep for 15 seconds and timeout
+       tags: sleep15
        wait_for:
          delay: 15
          timeout: 0
