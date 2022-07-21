@@ -21,4 +21,4 @@
          timeout: 0
     #
     - name: Display qmgr all
-      command: /opt/mqm/bin/runmqsc {{qmgr}} < /tmp/mycmd > /tmp/myoutput
+      command: /opt/mqm/bin/runmqsc {{qmgr}} -f /tmp/mycmd 
