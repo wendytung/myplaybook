@@ -30,5 +30,5 @@
     #
     - name: viewing the contents
       debug:
-      msg: "{{filename.stdout}}"
+        msg: "{{filename.stdout}}"
     #
