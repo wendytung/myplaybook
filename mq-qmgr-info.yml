@@ -4,7 +4,7 @@
     - name: Content Update
       copy:
         dest: /tmp/mycmd
-        content: "echo dis qmgr all"
+        content: "dis qmgr all"
     - name: Display qmgr name
       command: echo Queue Manager " {{qmgr}} " 
     - name: start qmgr " {{qmgr}} "
