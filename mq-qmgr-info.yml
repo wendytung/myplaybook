@@ -17,7 +17,7 @@
     -  name: Sleep for 60 seconds and timeout
        tags: sleep60
        wait_for:
-         delay: 60
+         delay: 15
          timeout: 0
     #
     - name: Display qmgr all
