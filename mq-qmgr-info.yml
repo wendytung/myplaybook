@@ -1,10 +1,12 @@
 ---
 - hosts: all
+  vars:
+    arg: "CMDEV PERFMEV"
   tasks:
     - name: Content Update
       copy:
         dest: /tmp/mycmd
-        content: "dis qmgr all"
+        content: "dis qmgr {{arg}}"
     #
     - name: Display qmgr name
       shell: echo Queue Manager is {{qmgr}} > /tmp/myqmgr
