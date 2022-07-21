@@ -22,3 +22,13 @@
     #
     - name: Display qmgr all
       shell: /opt/mqm/bin/runmqsc {{qmgr}} < /tmp/mycmd > /tmp/myoutput
+    #
+    - name: get contents of file
+      command: cat /tmp/myoutput
+      register: filename
+      become: true # use case specific option
+    #
+    - name: viewing the contents
+      debug:
+      msg: "{{filename.stdout}}"
+    #
