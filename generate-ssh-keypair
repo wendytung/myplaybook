@@ -19,4 +19,3 @@
     - name: Show private key
       debug:
         msg: "{{filename2.stdout}}"
-    # 
