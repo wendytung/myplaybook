@@ -1,0 +1,12 @@
+---
+- hosts: all
+  tasks:
+    - name: Remove any existing key files
+      shell: rm -rf /tmp/mykey*
+    - name: Generate SSH keypair
+      shell: ssh-keygen -b 2048 -t rsa -C "" -N "" -m PEM -f /tmp/mykey
+    - name: Show the public key
+      shell: cat /tmp/mykey.pub
+    - name: Show the private key
+      shell: cat /tmp/mykey|base64 -w0
+      
