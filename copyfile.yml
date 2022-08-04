@@ -9,7 +9,5 @@
       shell: "date >>/tmp/test123"
     - name: Show the file content
       shell: "cat /tmp/test123"
-      register: shellresult
-    - name: Show shellresult
-      debug: 
-        var: shellresult
+      register: out
+    - debug: var=out.stdout_lines
