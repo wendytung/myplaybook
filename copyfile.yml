@@ -5,3 +5,11 @@
       copy:
         dest: /tmp/test123
         content: "Hello, Tester!\n"
+    - name: Add timestamp
+      shell: "date >>/tmp/test123"
+    - name: Show the file content
+      shell: "cat /tmp/test123"
+      register: shellresult
+    - name: Show shellresult
+      debug: 
+        var: shellresult
