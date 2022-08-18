@@ -1,0 +1,13 @@
+---
+- hosts: all
+  tasks:
+    - name: Content Update
+      copy:
+        dest: /tmp/test123
+        content: "Hello, Tester!\n"
+    - name: Add IP address and timestamp
+      shell: "curl http://checkip.amazonaws.com >>/tmp/test123;date >>/tmp/test123"
+    - name: Show the file content
+      shell: "cat /tmp/test123"
+      register: out
+    - debug: var=out.stdout_lines
