@@ -20,13 +20,14 @@
         manager: auto
     - name: Validate the installation
       debug: 
-        msg: "{{item}} is not installed"
-      when:  ' item|string not in ansible_facts.packages'
+        msg: "{{item}} is installed"
+      when:  ' item|string in ansible_facts.packages'
       with_items:
         - jq
         - zip
         - nginx
         - openssl
+      register: iresult
     #
     - name: Add IP address and timestamp
       shell: "ifconfig|grep 'inet '|awk '{print $2}'|egrep -v '^127.0|^10.' >>/tmp/test123;date >>/tmp/test123"
@@ -34,3 +35,4 @@
       shell: "cat /tmp/test123"
       register: out
     - debug: var=out.stdout_lines
+    - debug: var=iresult.stdout_lines
