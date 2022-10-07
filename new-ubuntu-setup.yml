@@ -3,12 +3,30 @@
   tasks:
     - name: Content Update
       copy:
-        dest: /tmp/resolv.conf
-        content: "nameserver 192.168.0.2\n"
+        dest: /tmp/test123
+        content: "Hello, Tester!\n"       
     #
     - name: Install jq
-      shell: sudo apt-get install -y jq
+      shell: apt-get install -y jq
+      register: jq_cmd
+    #
+    -name: Install jq error
+     shell: "echo cannot install jq >>/tmp/test123"
+     when: jq_cmd.rc > 0
     #
     - name: Install zip
-      shell: sudo apt-get install -y zip
+      shell: apt-get install -y zip
+      register: zip_cmd
     #
+    -name: Install zip error
+     shell: "echo cannot install zip >>/tmp/test123"
+     when: zip_cmd.rc > 0
+    #
+    - name: Add IP address and timestamp
+      shell: "ifconfig|grep 'inet '|awk '{print $2}'|egrep -v '^127.0|^10.' >>/tmp/test123;date >>/tmp/test123"
+    #
+    - name: Show the file content
+      shell: "cat /tmp/test123"
+      register: out
+    #
+    - debug: var=out.stdout_lines
