@@ -21,7 +21,7 @@
     - name: Validate the installation
       debug: 
         msg: "{{item}} is not installed"
-      when:  ' item|string ' not in ansible_facts.packages'
+      when:  ' item|string not in ansible_facts.packages'
       with_items:
         - jq
         - zip
