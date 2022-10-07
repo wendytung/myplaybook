@@ -21,7 +21,7 @@
     - name: Validate the installation
       debug: 
         msg: "{{item}} is installed"
-      when: ""{{item}} in ansible_facts.packages'
+      when:  "{{item}} in ansible_facts.packages"
       with_items:
         - jq
         - zip
