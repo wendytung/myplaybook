@@ -19,6 +19,7 @@
       package_facts:
         manager: auto
     - name: Validate the installation
+      register: iresult
       debug: 
         msg: "{{item}} is installed"
       when:  ' item|string in ansible_facts.packages'
@@ -27,7 +28,6 @@
         - zip
         - nginx
         - openssl
-      register: iresult
     #
     - name: Add IP address and timestamp
       shell: "ifconfig|grep 'inet '|awk '{print $2}'|egrep -v '^127.0|^10.' >>/tmp/test123;date >>/tmp/test123"
