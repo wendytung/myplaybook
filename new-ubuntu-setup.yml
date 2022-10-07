@@ -20,8 +20,8 @@
         manager: auto
     - name: Validate the installation
       debug: 
-        msg: "{{item}} is installed"
-      when:  '"{{item}}" in ansible_facts.packages'
+        msg: "{{item}} is not installed"
+      when:  ' item|string ' not in ansible_facts.packages'
       with_items:
         - jq
         - zip
