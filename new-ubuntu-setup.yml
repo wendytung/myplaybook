@@ -6,35 +6,27 @@
         dest: /tmp/test123
         content: "Hello, Tester!\n"       
     #
-    - name: Install jq
+    - name: Install software package
       apt:
-        name: jq
-        state: present
         update_cache: yes
-      register: jq_cmd
-    - name: Install jq error
-      shell: "echo cannot install jq >>/tmp/test123"
-      when: jq_cmd.rc > 0
-    #
-    - name: Install zip
-      apt:
-        name: zip
+        name:
+          - jq
+          - zip
+          - nginx
+          - openssl
         state: present
-        update_cache: yes
-      register: jq_cmd
-    - name: Install zip error
-      shell: "echo cannot install zip >>/tmp/test123"
-      when: zip_cmd.rc > 0
-    #
-    - name: Install openssl
-      apt:
-        name: openssl
-        state: present
-        update_cache: yes
-      register: openssl_cmd
-    - name: Install openssl error
-      shell: "echo cannot install openssl >>/tmp/test123"
-      when: openssl_cmd.rc > 0
+    - name: Gather Package facts
+      package_facts:
+        manager: auto
+    - name: Validate the installation
+      debug: 
+        msg: "{{item}} is installed"
+      when: ""{{item}} in ansible_facts.packages'
+      with_items:
+        - jq
+        - zip
+        - nginx
+        - openssl
     #
     - name: Add IP address and timestamp
       shell: "ifconfig|grep 'inet '|awk '{print $2}'|egrep -v '^127.0|^10.' >>/tmp/test123;date >>/tmp/test123"
