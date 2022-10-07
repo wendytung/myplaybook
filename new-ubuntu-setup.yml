@@ -19,9 +19,7 @@
       package_facts:
         manager: auto
     - name: Validate the installation
-      register: iresult
-      debug: 
-        msg: "{{item}} is installed"
+      shell: "echo {{item}} is installed >>/tmp/test123"
       when:  ' item|string in ansible_facts.packages'
       with_items:
         - jq
@@ -35,4 +33,3 @@
       shell: "cat /tmp/test123"
       register: out
     - debug: var=out.stdout_lines
-    - debug: var=iresult.stdout_lines
