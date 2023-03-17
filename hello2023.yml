@@ -1,0 +1,4 @@
+- name: Echo Hello, world, 2023!
+  hosts: localhost
+  tasks:
+  - debug: msg="Hello, world, 2023!"
